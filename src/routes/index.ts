@@ -3,7 +3,7 @@ import images from './api/images';
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
-  res.sendStatus(400);
+  res.sendStatus(200).end();
 });
 
 routes.use('/images', images);
