@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = __importDefault(require("../../../index"));
-const path_1 = __importDefault(require("path"));
 const images_1 = require("../../../routes/api/images");
 describe('routes/api/imagesSpec.js', () => {
     describe('validateQuery(): validate the request query parameters ', () => {
@@ -108,86 +107,8 @@ describe('routes/api/imagesSpec.js', () => {
             expect((0, images_1.validateQuery)(query)).toBeNull();
         });
     });
-    describe('ifImageExists(): Check if the file exists.', () => {
-        const fullPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'full');
-        it('should return true if the file exists', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'palmtunnel';
-            const filePath = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const file = yield (0, images_1.ifImageExists)(filePath);
-            expect(file).toBeTrue();
-        }));
-        it('should return false when the file does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'teastazse';
-            const filePath = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const file = yield (0, images_1.ifImageExists)(filePath);
-            expect(file).toBeFalse();
-        }));
-    });
-    describe('readImage(): read the image file', () => {
-        const fullPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'full');
-        it('should return file buffer if the image exists', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'fjord';
-            const filePath = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const file = yield (0, images_1.readImage)(filePath);
-            expect(file).toBeInstanceOf(Buffer);
-        }));
-        it('should return null when the image does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'tqawekjag';
-            const filePath = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const file = yield (0, images_1.readImage)(filePath);
-            expect(file).toBeNull();
-        }));
-    });
-    describe('getFileName(): get normalized complete file name ', () => {
-        it('should return filename.jpg', () => {
-            const filename = 'icelandwaterfall';
-            expect((0, images_1.getFileName)(filename, images_1.ImageType.jpg)).toBe('icelandwaterfall.jpg');
-        });
-        it('should return icelandwaterfall_100x100.jpg', () => {
-            const filename = 'icelandwaterfall';
-            const width = 100;
-            const height = 100;
-            expect((0, images_1.getFileName)(filename, images_1.ImageType.jpg, width, height)).toBe('icelandwaterfall_100x100.jpg');
-        });
-        it('should throw error when filename is empty', () => {
-            const filename = '';
-            expect(function () {
-                (0, images_1.getFileName)(filename, images_1.ImageType.jpg);
-            }).toThrowError(Error);
-        });
-        it('should return filename.jpg when width is set but height is not', () => {
-            const filename = 'icelandwaterfall';
-            const width = 100;
-            expect((0, images_1.getFileName)(filename, images_1.ImageType.jpg, width)).toBe('icelandwaterfall.jpg');
-        });
-    });
-    describe('resizeImage(): resize an jpg image ', () => {
-        const fullPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'full');
-        const thumbPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'thumb');
-        it('should return file buffer', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'icelandwaterfall';
-            const fromFile = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const width = 100;
-            const height = 100;
-            const toFile = path_1.default.join(thumbPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg, width, height));
-            const buffer = yield (0, images_1.resizeImage)(fromFile, width, height, toFile);
-            expect(buffer).toBeInstanceOf(Buffer);
-        }));
-        it('should return null when the full size file does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'qwtrasdr';
-            const fromFile = path_1.default.join(fullPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg));
-            const width = 100;
-            const height = 100;
-            const toFile = path_1.default.join(thumbPath, (0, images_1.getFileName)(filename, images_1.ImageType.jpg, width, height));
-            const buffer = yield (0, images_1.resizeImage)(fromFile, width, height, toFile);
-            expect(buffer).toBeNull();
-        }));
-    });
     describe('/api/images?filename={filename}&width={width}&height={width}', () => {
         const request = (0, supertest_1.default)(index_1.default);
-        it('should return 400 when requesting without any query parameters', () => {
-            request.get('/api/images').expect(400);
-        });
         it('should return resized image with image/jpeg content type', () => __awaiter(void 0, void 0, void 0, function* () {
             const filename = 'encenadaport';
             const width = 100;
@@ -195,6 +116,9 @@ describe('routes/api/imagesSpec.js', () => {
             const url = `/api/images?filename=${filename}&width=${width}&height=${height}`;
             yield request.get(url).expect('Content-Type', /image/);
         }));
+        it('should return 400 when requesting without any query parameters', () => {
+            request.get('/api/images').expect(400);
+        });
         it('should return 400 page when filename is empty', () => __awaiter(void 0, void 0, void 0, function* () {
             const width = 100;
             const height = 100;

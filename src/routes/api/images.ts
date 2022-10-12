@@ -1,23 +1,16 @@
 import express, { Router } from 'express';
-import { promises as fsPromises } from 'fs';
-import path from 'path';
-import sharp from 'sharp';
 import { logger } from '../../index';
+import {
+  getImagePath,
+  ifImageExists,
+  readImage,
+  resizeImage,
+  ImageType,
+  imgFullPath,
+  imgThumbPath,
+} from './imagesUtil';
 
 const images: Router = express.Router();
-
-const imgFullPath: string = path.join(__dirname, '../../../', 'images', 'full');
-const imgResizePath: string = path.join(
-  __dirname,
-  '../../../',
-  'images',
-  'thumb'
-);
-
-enum ImageType {
-  jpg = 'jpg',
-  png = 'png',
-}
 
 interface RequestQuery {
   filename?: string;
@@ -51,102 +44,6 @@ function validateQuery(queryParams: RequestQuery): RequestQuery | null {
 }
 
 /**
- * Get the complete file name with type extension. If both width and height have value, add the width/height info into the filename.
- * @param filename filename without type extension
- * @param type type extension
- * @param width (optional) width of the image.
- * @param height (optional) height of the image
- * @returns normalized file name
- */
-function getFileName(
-  filename: string,
-  type: ImageType,
-  width?: number,
-  height?: number
-): string {
-  if (filename.length === 0) {
-    logger.error('getFileName(): Filename must not be empty string.');
-    throw new Error('Filename must not be empty string.');
-  }
-
-  if (width !== undefined && height !== undefined) {
-    return `${filename.toLowerCase()}_${width}x${height}.${ImageType.jpg}`;
-  } else {
-    //ignore width and height in the file name if only width or only height is passed.
-    return `${filename.toLowerCase()}.${ImageType.jpg}`;
-  }
-}
-
-/**
- * A promise that checks if a file exists and can be read.
- * @param filePath the full path of the image file.
- * @returns True if the file exists, false otherwise.
- */
-async function ifImageExists(filePath: string): Promise<boolean> {
-  try {
-    await fsPromises.access(filePath, fsPromises.constants.R_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-/**
- * A Promise that read the entire image file
- * @param filePath the full path of the image file.
- * @returns the file content buffer or null if file not found.
- */
-async function readImage(filePath: string): Promise<Buffer | null> {
-  if (filePath.length === 0) return null;
-
-  try {
-    return await fsPromises.readFile(filePath);
-  } catch (err) {
-    if (err instanceof Error) {
-      if (!err.message.startsWith('ENOENT')) {
-        logger.error(`fsPromises.readFile error: ${err.message}`);
-        throw new Error(`fsPromises.readFile error: ${err.message}`);
-      }
-      //Do not throw errors for file not exist. Just silently log the error.
-      logger.info(`Resize image not found: ${err.name}- ${err.message}`);
-    }
-    return null;
-  }
-}
-
-/**
- * A promise that resizes the image to specific width and height using Sharp. This saves the resized image into a new file and returns the resized image buffer.
- * @param fromFilePath the full path of the original full size image
- * @param width the resized width. must greater than 0.
- * @param height the resized height. must greater than 0.
- * @param toFilePath the full path including file name that you want to save the resized image to.
- * @returns Promise<buffer> the file content in buffer if it's successfully resized or null if error.
- */
-async function resizeImage(
-  fromFilePath: string,
-  width: number | undefined,
-  height: number | undefined,
-  toFilePath: string
-): Promise<Buffer | null> {
-  if (fromFilePath.length === 0 || toFilePath.length === 0) return null;
-  try {
-    return await sharp(fromFilePath)
-      .resize(width, height)
-      .toFile(toFilePath, (err) => {
-        if (err !== null) {
-          logger.error(`sharp.toFile error: ${err.name}- ${err.message}`);
-        }
-      })
-      .toBuffer();
-  } catch (err) {
-    if (err instanceof Error) {
-      logger.error(`processImage error: ${err.name}- ${err.message}`);
-    }
-    return null;
-  }
-}
-
-/**
  * The middleware for processing image. The example url request, /api/images?filename=example&width=100&height=100
  * @param req http request
  * @param res http response
@@ -163,31 +60,39 @@ async function imageProcessing(
     //Validate the query
     const queryParams = validateQuery(req.query as unknown as RequestQuery);
     if (queryParams === null) {
-      res.status(400).end();
+      res
+        .status(400)
+        .send(
+          'Invalid query parameters. Please provide valid filename (name without file extension), width (positive number), and height (positive number).'
+        );
       logger.error(`validateQuery error: invalid query parameters.`);
       return;
     }
 
-    const origFilePath = path.join(
-      imgFullPath,
-      getFileName(queryParams.filename as string, ImageType.jpg)
+    const origFilePath = getImagePath(
+      queryParams.filename as string,
+      ImageType.jpg,
+      imgFullPath
     );
-    const resizeFilePath = path.join(
-      imgResizePath,
-      getFileName(
-        queryParams.filename as string,
-        ImageType.jpg,
-        queryParams.width,
-        queryParams.height
-      )
+    const resizeFilePath = getImagePath(
+      queryParams.filename as string,
+      ImageType.jpg,
+      imgThumbPath,
+      queryParams.width,
+      queryParams.height
     );
+
     logger.info(`Input file path: ${origFilePath}`);
     logger.info(`Output file path: ${resizeFilePath}`);
 
     //Check if the original full size image exists
     const ifExists = await ifImageExists(origFilePath);
     if (!ifExists) {
-      res.status(400).end();
+      res
+        .status(400)
+        .send(
+          'File does not exist. Please double check the filename (name only no file extension).'
+        );
       logger.error(
         `ifFileExist error: full size image does not exist. ${origFilePath}`
       );
@@ -200,7 +105,7 @@ async function imageProcessing(
       //send existing image file to the response.
       logger.info('Resize file exists. Send directly to the response.');
       res.type('jpg');
-      res.send(resizeFile).end();
+      res.send(resizeFile);
     } else {
       //resize image, save to file, and send it to response.
       logger.info(
@@ -215,16 +120,16 @@ async function imageProcessing(
 
       if (buffer !== null) {
         res.type('jpg');
-        res.send(buffer).end();
+        res.send(buffer);
       } else {
-        res.status(500).end();
+        res.status(500).send('Image cannot be resized. Please try again.');
         logger.error(
           `resizeImage error: resize buffer is null. ${resizeFilePath}.`
         );
       }
     }
   } catch (err) {
-    res.status(400).end();
+    res.status(400).send('Image processing failed. Please try again.');
     if (err instanceof Error) {
       logger.error(`imageProcessing: ${err.name}- ${err.message}`);
     }
@@ -235,14 +140,4 @@ async function imageProcessing(
 
 images.use('/', imageProcessing);
 
-export {
-  images as default,
-  validateQuery,
-  ifImageExists,
-  getFileName,
-  readImage,
-  resizeImage,
-  imageProcessing,
-  RequestQuery,
-  ImageType,
-};
+export { images as default, validateQuery, imageProcessing, RequestQuery };

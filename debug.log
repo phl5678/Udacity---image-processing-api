@@ -34,3 +34,282 @@
 {"level":"info","message":"Resize file exists. Send directly to the response."}
 {"level":"info","message":"Done image processing."}
 {"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"processImage error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_450x350.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_450x350.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_450000x350.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_450000x350.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_450000x350.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\encenadaport.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\encenadaport_100x100.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\randomname_500x500.jpg"}
+{"level":"error","message":"ifFileExist error: full size image does not exist. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\randomname.jpg"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"processImage error: Error- Processed image is too large for the JPEG format"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_500000x500000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\tqawekjag.jpg'"}
+{"level":"error","message":"getFileName(): Filename must not be empty string."}
+{"level":"error","message":"sharp.toFile error: Error- Input file is missing: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\qwtrasdr.jpg"}
+{"level":"info","message":"server started at http://localhost:3000"}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"error","message":"validateQuery error: invalid query parameters."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\icelandwaterfall.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x350.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x350.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\icelandwaterfall.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\icelandwaterfall.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\icelandwaterfall.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x35000000.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x35000000.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"error","message":"sharp.toFile error: Error- affine: output coordinates out of range\naffine: output coordinates out of range\n"}
+{"level":"error","message":"processImage error: Error- affine: output coordinates out of range\naffine: output coordinates out of range\n"}
+{"level":"error","message":"resizeImage error: resize buffer is null. C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\icelandwaterfall_450x35000000.jpg."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\fjord.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\fjord_450x350.jpg"}
+{"level":"info","message":"Resize file exists. Send directly to the response."}
+{"level":"info","message":"Done image processing middleware."}
+{"level":"info","message":"Start image processing middleware"}
+{"level":"info","message":"Input file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\full\\santamonica.jpg"}
+{"level":"info","message":"Output file path: C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_700x800.jpg"}
+{"level":"info","message":"Resize image not found: Error- ENOENT: no such file or directory, open 'C:\\Users\\marvi\\Dropbox\\Coding\\Udacity - image processing api\\images\\thumb\\santamonica_700x800.jpg'"}
+{"level":"info","message":"Resize file not found. Resize, save to file, and send to the response."}
+{"level":"info","message":"Done image processing middleware."}
