@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
+const index_1 = require("../../index");
 const images = express_1.default.Router();
 exports.default = images;
 const imgFullPath = path_1.default.join(__dirname, '../../../', 'images', 'full');
@@ -58,6 +59,7 @@ exports.validateQuery = validateQuery;
  */
 function getFileName(filename, type, width, height) {
     if (filename.length === 0) {
+        index_1.logger.error('getFileName(): Filename must not be empty string.');
         throw new Error('Filename must not be empty string.');
     }
     if (width !== undefined && height !== undefined) {
@@ -101,10 +103,11 @@ function readImage(filePath) {
         catch (err) {
             if (err instanceof Error) {
                 if (!err.message.startsWith('ENOENT')) {
+                    index_1.logger.error(`fsPromises.readFile error: ${err.message}`);
                     throw new Error(`fsPromises.readFile error: ${err.message}`);
                 }
                 //Do not throw errors for file not exist. Just silently log the error.
-                console.log(`Resize image not found: ${err.name}- ${err.message}`);
+                index_1.logger.info(`Resize image not found: ${err.name}- ${err.message}`);
             }
             return null;
         }
@@ -128,15 +131,14 @@ function resizeImage(fromFilePath, width, height, toFilePath) {
                 .resize(width, height)
                 .toFile(toFilePath, (err) => {
                 if (err !== null) {
-                    console.log(`sharp.toFile error: ${err.name}- ${err.message}`);
+                    index_1.logger.error(`sharp.toFile error: ${err.name}- ${err.message}`);
                 }
             })
                 .toBuffer();
         }
         catch (err) {
             if (err instanceof Error) {
-                console.log(`processImage error: ${err.name}- ${err.message}`);
-                //throw new Error(`processImage error: ${err.name}- ${err.message}`);
+                index_1.logger.error(`processImage error: ${err.name}- ${err.message}`);
             }
             return null;
         }
@@ -152,31 +154,36 @@ exports.resizeImage = resizeImage;
 function imageProcessing(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            index_1.logger.info('Start image processing middleware');
             //Validate the query
             const queryParams = validateQuery(req.query);
             if (queryParams === null) {
                 res.status(400).end();
-                console.log(`validateQuery error: invalid query parameters.`);
+                index_1.logger.error(`validateQuery error: invalid query parameters.`);
                 return;
             }
             const origFilePath = path_1.default.join(imgFullPath, getFileName(queryParams.filename, ImageType.jpg));
             const resizeFilePath = path_1.default.join(imgResizePath, getFileName(queryParams.filename, ImageType.jpg, queryParams.width, queryParams.height));
+            index_1.logger.info(`Input file path: ${origFilePath}`);
+            index_1.logger.info(`Output file path: ${resizeFilePath}`);
             //Check if the original full size image exists
             const ifExists = yield ifImageExists(origFilePath);
             if (!ifExists) {
                 res.status(400).end();
-                console.log(`ifFileExist error: full size image does not exist.`);
+                index_1.logger.error(`ifFileExist error: full size image does not exist. ${origFilePath}`);
                 return;
             }
             //Get the resize image if it exists. Otherwise resize and save to file.
             const resizeFile = yield readImage(resizeFilePath);
             if (resizeFile !== null && resizeFile.byteLength !== 0) {
                 //send existing image file to the response.
+                index_1.logger.info('Resize file exists. Send directly to the response.');
                 res.type('jpg');
                 res.send(resizeFile).end();
             }
             else {
                 //resize image, save to file, and send it to response.
+                index_1.logger.info('Resize file not found. Resize, save to file, and send to the response.');
                 const buffer = yield resizeImage(origFilePath, queryParams.width, queryParams.height, resizeFilePath);
                 if (buffer !== null) {
                     res.type('jpg');
@@ -184,16 +191,17 @@ function imageProcessing(req, res, next) {
                 }
                 else {
                     res.status(500).end();
-                    console.log(`resizeImage error: resize buffer is null.`);
+                    index_1.logger.error(`resizeImage error: resize buffer is null. ${resizeFilePath}.`);
                 }
             }
         }
         catch (err) {
             res.status(400).end();
             if (err instanceof Error) {
-                console.log(`imageProcessing: ${err.name}- ${err.message}`);
+                index_1.logger.error(`imageProcessing: ${err.name}- ${err.message}`);
             }
         }
+        index_1.logger.info('Done image processing.');
         next();
     });
 }
