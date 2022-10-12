@@ -100,7 +100,9 @@ describe('routes/api/imagesUtilSpec.js', () => {
         width,
         height
       );
-      await expectAsync(resizeImage(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
+      await expectAsync(
+        resizeImage(fromFile, width, height, toFile)
+      ).toBeRejectedWithError(Error);
     });
     it('should be rejected with error when the resize is too large', async () => {
       const filename = 'icelandwaterfall';
@@ -114,8 +116,9 @@ describe('routes/api/imagesUtilSpec.js', () => {
         width,
         height
       );
-      await expectAsync(resizeImage(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
-
+      await expectAsync(
+        resizeImage(fromFile, width, height, toFile)
+      ).toBeRejectedWithError(Error);
     });
   });
 });
