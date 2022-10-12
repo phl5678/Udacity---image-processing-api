@@ -33,7 +33,7 @@ http://localhost:3000/api/images?filename=santamonica&width=500&height=500
 1. If encounter any error, check the file ./debug.log for more information.
 2. The information about images being processed or accessed is logged in ./debug.log. 
     - If being accessed, the message is _"Resize file exists. Send directly to the response."_ 
-    - If being processed, the message is _"Resize file not found. Resize, save to file, and send to the response."_
+    - If being processed, the message is _"Resize file not found. Resizing and saving to file."_
 
 
 
