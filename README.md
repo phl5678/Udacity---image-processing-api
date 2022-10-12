@@ -16,7 +16,7 @@ http://localhost:3000/api/images?filename=santamonica&width=500&height=500
 1. Run `npm run prettier` to confirm all files are formatted.
 2. Run `npm run lint` to confirm all files are error-free.
 3. Run `npm run start` to start the server from the ./src folder. And you should be able to start testing. See testing instructions below.
-4. Run `npm run test` to transpile TS files from ./src folder into JS files in ./build folder, and run unit testing scripts. All 29 unit testing cases should be passed.
+4. Run `npm run test` to transpile TS files from ./src folder into JS files in ./build folder, and run unit testing scripts. All 28 unit testing cases should be passed.
 5. Run `node build/.` to start the server from the ./build folder. And you should be able to start testing again. See testing instructions below.
 
 
