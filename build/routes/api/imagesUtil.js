@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.imgThumbPath = exports.imgFullPath = exports.ImageType = exports.resizeImage = exports.readImage = exports.ifImageExists = exports.getImagePath = void 0;
+exports.imgThumbPath = exports.imgFullPath = exports.ImageType = exports.resizeImage = exports.readImage = exports.getImagePath = void 0;
 const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
 const sharp_1 = __importDefault(require("sharp"));
@@ -38,31 +38,14 @@ exports.ImageType = ImageType;
  */
 function getImagePath(filename, type, filepath, width, height) {
     if (filename.length === 0) {
-        index_1.logger.error('getFileName(): Filename must not be empty string.');
-        throw new Error('Filename must not be empty string.');
+        index_1.logger.error('getImagePath(): Filename must not be empty string.');
+        throw new Error('filename must not be empty string.');
     }
     return width !== undefined && height !== undefined
         ? path_1.default.join(filepath, `${filename.toLowerCase()}_${width}x${height}.${type}`)
         : path_1.default.join(filepath, `${filename.toLowerCase()}.${type}`); //ignore width and height in the file name if only width or only height is passed.
 }
 exports.getImagePath = getImagePath;
-/**
- * A promise that checks if a file exists and can be read.
- * @param filePath the full path of the image file.
- * @returns True if the file exists, false otherwise.
- */
-function ifImageExists(filePath) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield fs_1.promises.access(filePath, fs_1.promises.constants.R_OK);
-            return true;
-        }
-        catch (_a) {
-            return false;
-        }
-    });
-}
-exports.ifImageExists = ifImageExists;
 /**
  * A Promise that read the entire image file
  * @param filePath the full path of the image file.
@@ -78,11 +61,11 @@ function readImage(filePath) {
         catch (err) {
             if (err instanceof Error) {
                 if (!err.message.startsWith('ENOENT')) {
-                    index_1.logger.error(`fsPromises.readFile error: ${err.message}`);
-                    throw new Error(`fsPromises.readFile error: ${err.message}`);
+                    index_1.logger.error(`fsPromises.readFile error: ${err.name} - ${err.message}`);
+                    throw new Error(`fsPromises.readFile error: ${err.name} - ${err.message}`);
                 }
                 //Do not throw errors for file not exist. Just silently log the error.
-                index_1.logger.info(`Resize image not found: ${err.name}- ${err.message}`);
+                index_1.logger.info(`fsPromises.readFile error: ${err.name} - ${err.message}`);
             }
             return null;
         }
@@ -106,16 +89,17 @@ function resizeImage(fromFilePath, width, height, toFilePath) {
                 .resize(width, height)
                 .toFile(toFilePath, (err) => {
                 if (err !== null) {
-                    index_1.logger.error(`sharp.toFile error: ${err.name}- ${err.message}`);
+                    index_1.logger.error(`sharp.toFile error: ${err.name} - ${err.message}`);
                 }
             })
                 .toBuffer();
         }
         catch (err) {
             if (err instanceof Error) {
-                index_1.logger.error(`processImage error: ${err.name}- ${err.message}`);
+                index_1.logger.error(`resizeImage() error: ${err.name} - ${err.message}`);
+                throw new Error(err.message);
             }
-            return null;
+            throw new Error('sharp error.');
         }
     });
 }

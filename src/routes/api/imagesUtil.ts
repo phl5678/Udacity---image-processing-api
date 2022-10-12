@@ -33,8 +33,8 @@ function getImagePath(
   height?: number
 ): string {
   if (filename.length === 0) {
-    logger.error('getFileName(): Filename must not be empty string.');
-    throw new Error('Filename must not be empty string.');
+    logger.error('getImagePath(): Filename must not be empty string.');
+    throw new Error('filename must not be empty string.');
   }
 
   return width !== undefined && height !== undefined
@@ -43,20 +43,6 @@ function getImagePath(
         `${filename.toLowerCase()}_${width}x${height}.${type}`
       )
     : path.join(filepath, `${filename.toLowerCase()}.${type}`); //ignore width and height in the file name if only width or only height is passed.
-}
-
-/**
- * A promise that checks if a file exists and can be read.
- * @param filePath the full path of the image file.
- * @returns True if the file exists, false otherwise.
- */
-async function ifImageExists(filePath: string): Promise<boolean> {
-  try {
-    await fsPromises.access(filePath, fsPromises.constants.R_OK);
-    return true;
-  } catch {
-    return false;
-  }
 }
 
 /**
@@ -72,11 +58,13 @@ async function readImage(filePath: string): Promise<Buffer | null> {
   } catch (err) {
     if (err instanceof Error) {
       if (!err.message.startsWith('ENOENT')) {
-        logger.error(`fsPromises.readFile error: ${err.message}`);
-        throw new Error(`fsPromises.readFile error: ${err.message}`);
+        logger.error(`fsPromises.readFile error: ${err.name} - ${err.message}`);
+        throw new Error(
+          `fsPromises.readFile error: ${err.name} - ${err.message}`
+        );
       }
       //Do not throw errors for file not exist. Just silently log the error.
-      logger.info(`Resize image not found: ${err.name}- ${err.message}`);
+      logger.info(`fsPromises.readFile error: ${err.name} - ${err.message}`);
     }
     return null;
   }
@@ -102,21 +90,21 @@ async function resizeImage(
       .resize(width, height)
       .toFile(toFilePath, (err) => {
         if (err !== null) {
-          logger.error(`sharp.toFile error: ${err.name}- ${err.message}`);
+          logger.error(`sharp.toFile error: ${err.name} - ${err.message}`);
         }
       })
       .toBuffer();
   } catch (err) {
     if (err instanceof Error) {
-      logger.error(`processImage error: ${err.name}- ${err.message}`);
+      logger.error(`resizeImage() error: ${err.name} - ${err.message}`);
+      throw new Error(err.message);
     }
-    return null;
+    throw new Error('sharp error.');
   }
 }
 
 export {
   getImagePath,
-  ifImageExists,
   readImage,
   resizeImage,
   ImageType,

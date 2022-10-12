@@ -2,7 +2,6 @@ import express, { Router } from 'express';
 import { logger } from '../../index';
 import {
   getImagePath,
-  ifImageExists,
   readImage,
   resizeImage,
   ImageType,
@@ -47,7 +46,7 @@ function validateQuery(queryParams: RequestQuery): RequestQuery | null {
  * The middleware for processing image. The example url request, /api/images?filename=example&width=100&height=100
  * @param req http request
  * @param res http response
- * @param next the next
+ * @param next the next function
  */
 async function imageProcessing(
   req: express.Request,
@@ -55,18 +54,15 @@ async function imageProcessing(
   next: express.NextFunction
 ): Promise<void> {
   try {
-    logger.info('Start image processing middleware');
+    logger.info('---Start image processing middleware---');
 
     //Validate the query
     const queryParams = validateQuery(req.query as unknown as RequestQuery);
     if (queryParams === null) {
-      res
-        .status(400)
-        .send(
-          'Invalid query parameters. Please provide valid filename (name without file extension), width (positive number), and height (positive number).'
-        );
       logger.error(`validateQuery error: invalid query parameters.`);
-      return;
+      throw new Error(
+        'Invalid query parameters. Please provide valid filename (name without file extension), width (positive number), and height (positive number).'
+      );
     }
 
     const origFilePath = getImagePath(
@@ -82,22 +78,7 @@ async function imageProcessing(
       queryParams.height
     );
 
-    logger.info(`Input file path: ${origFilePath}`);
-    logger.info(`Output file path: ${resizeFilePath}`);
-
-    //Check if the original full size image exists
-    const ifExists = await ifImageExists(origFilePath);
-    if (!ifExists) {
-      res
-        .status(400)
-        .send(
-          'File does not exist. Please double check the filename (name only no file extension).'
-        );
-      logger.error(
-        `ifFileExist error: full size image does not exist. ${origFilePath}`
-      );
-      return;
-    }
+    logger.info(`Reading resize image: ${resizeFilePath}`);
 
     //Get the resize image if it exists. Otherwise resize and save to file.
     const resizeFile = await readImage(resizeFilePath);
@@ -108,9 +89,7 @@ async function imageProcessing(
       res.send(resizeFile);
     } else {
       //resize image, save to file, and send it to response.
-      logger.info(
-        'Resize file not found. Resize, save to file, and send to the response.'
-      );
+      logger.info('Resize file not found. Resizing and saving to file.');
       const buffer = await resizeImage(
         origFilePath,
         queryParams.width,
@@ -118,23 +97,31 @@ async function imageProcessing(
         resizeFilePath
       );
 
-      if (buffer !== null) {
+      if (buffer !== null && buffer.byteLength !== 0) {
         res.type('jpg');
         res.send(buffer);
+        logger.info('Resized file saved and sent to response.');
       } else {
-        res.status(500).send('Image cannot be resized. Please try again.');
-        logger.error(
-          `resizeImage error: resize buffer is null. ${resizeFilePath}.`
-        );
+        logger.error(`resizeImage error: resize buffer returned null.`);
+        throw new Error('Image cannot be resized. Please try again.');
       }
     }
   } catch (err) {
-    res.status(400).send('Image processing failed. Please try again.');
     if (err instanceof Error) {
-      logger.error(`imageProcessing: ${err.name}- ${err.message}`);
+      logger.error(`${err.name} - ${err.message}`);
+      if (
+        //User error
+        err.message.startsWith('Input file is missing') ||
+        err.message.startsWith('Invalid query parameters')
+      ) {
+        res.status(400).send(err.message);
+      } else {
+        //System error
+        res.status(500).send(err.message);
+      }
     }
   }
-  logger.info('Done image processing middleware.');
+  logger.info('---Done image processing middleware---');
   next();
 }
 

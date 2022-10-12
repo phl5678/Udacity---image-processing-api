@@ -1,6 +1,5 @@
 import path from 'path';
 import {
-  ifImageExists,
   getImagePath,
   readImage,
   resizeImage,
@@ -26,21 +25,6 @@ describe('routes/api/imagesUtilSpec.js', () => {
     'images',
     'thumb'
   );
-  describe('ifImageExists(): Check if the file exists.', () => {
-    it('should return true if the file exists', async () => {
-      const filename = 'palmtunnel';
-      const filePath = getImagePath(filename, ImageType.jpg, fullPath);
-
-      const file = await ifImageExists(filePath);
-      expect(file).toBeTrue();
-    });
-    it('should return false when the file does not exist', async () => {
-      const filename = 'teastazse';
-      const filePath = getImagePath(filename, ImageType.jpg, fullPath);
-      const file = await ifImageExists(filePath);
-      expect(file).toBeFalse();
-    });
-  });
 
   describe('readImage(): read the image file', () => {
     it('should return file buffer if the image exists', async () => {
@@ -104,7 +88,7 @@ describe('routes/api/imagesUtilSpec.js', () => {
       const buffer = await resizeImage(fromFile, width, height, toFile);
       expect(buffer).toBeInstanceOf(Buffer);
     });
-    it('should return null when the full size file does not exist', async () => {
+    it('should be rejected with error when the full size file does not exist', async () => {
       const filename = 'qwtrasdr';
       const fromFile = getImagePath(filename, ImageType.jpg, fullPath);
       const width = 100;
@@ -116,8 +100,22 @@ describe('routes/api/imagesUtilSpec.js', () => {
         width,
         height
       );
-      const buffer = await resizeImage(fromFile, width, height, toFile);
-      expect(buffer).toBeNull();
+      await expectAsync(resizeImage(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
+    });
+    it('should be rejected with error when the resize is too large', async () => {
+      const filename = 'icelandwaterfall';
+      const fromFile = getImagePath(filename, ImageType.jpg, fullPath);
+      const width = 100000;
+      const height = 100;
+      const toFile = getImagePath(
+        filename,
+        ImageType.jpg,
+        thumbPath,
+        width,
+        height
+      );
+      await expectAsync(resizeImage(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
+
     });
   });
 });

@@ -17,20 +17,6 @@ const imagesUtil_1 = require("../../../routes/api/imagesUtil");
 describe('routes/api/imagesUtilSpec.js', () => {
     const fullPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'full');
     const thumbPath = path_1.default.join(__dirname, '..', '..', '..', '..', 'images', 'thumb');
-    describe('ifImageExists(): Check if the file exists.', () => {
-        it('should return true if the file exists', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'palmtunnel';
-            const filePath = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, fullPath);
-            const file = yield (0, imagesUtil_1.ifImageExists)(filePath);
-            expect(file).toBeTrue();
-        }));
-        it('should return false when the file does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
-            const filename = 'teastazse';
-            const filePath = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, fullPath);
-            const file = yield (0, imagesUtil_1.ifImageExists)(filePath);
-            expect(file).toBeFalse();
-        }));
-    });
     describe('readImage(): read the image file', () => {
         it('should return file buffer if the image exists', () => __awaiter(void 0, void 0, void 0, function* () {
             const filename = 'fjord';
@@ -78,14 +64,21 @@ describe('routes/api/imagesUtilSpec.js', () => {
             const buffer = yield (0, imagesUtil_1.resizeImage)(fromFile, width, height, toFile);
             expect(buffer).toBeInstanceOf(Buffer);
         }));
-        it('should return null when the full size file does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
+        it('should be rejected with error when the full size file does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
             const filename = 'qwtrasdr';
             const fromFile = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, fullPath);
             const width = 100;
             const height = 100;
             const toFile = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, thumbPath, width, height);
-            const buffer = yield (0, imagesUtil_1.resizeImage)(fromFile, width, height, toFile);
-            expect(buffer).toBeNull();
+            yield expectAsync((0, imagesUtil_1.resizeImage)(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
+        }));
+        it('should be rejected with error when the resize is too large', () => __awaiter(void 0, void 0, void 0, function* () {
+            const filename = 'icelandwaterfall';
+            const fromFile = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, fullPath);
+            const width = 100000;
+            const height = 100;
+            const toFile = (0, imagesUtil_1.getImagePath)(filename, imagesUtil_1.ImageType.jpg, thumbPath, width, height);
+            yield expectAsync((0, imagesUtil_1.resizeImage)(fromFile, width, height, toFile)).toBeRejectedWithError(Error);
         }));
     });
 });
